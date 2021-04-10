@@ -11,8 +11,6 @@ import Div from '@vkontakte/vkui/dist/components/Div/Div';
 import { Banner, FormItem, Select, Input, FixedLayout  } from '@vkontakte/vkui';
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
 
-import './Register.css';
-
 
 const Register = ({ id, go, fetchedUser }) => {
 	const [professions, setProfessions] = useState([]);
