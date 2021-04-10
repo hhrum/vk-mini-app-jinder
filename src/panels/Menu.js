@@ -1,3 +1,4 @@
+import React from "react";
 import { Icon28SlidersOutline } from "@vkontakte/icons";
 import { Panel, PanelHeader, Group } from "@vkontakte/vkui";
 // import { Icon } from "@vkontakte/icons";
