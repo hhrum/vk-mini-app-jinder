@@ -8,7 +8,7 @@ import Button from '@vkontakte/vkui/dist/components/Button/Button';
 import Group from '@vkontakte/vkui/dist/components/Group/Group';
 import SimpleCell from '@vkontakte/vkui/dist/components/SimpleCell/SimpleCell';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
-import { Banner, FormItem, Select, Input, FixedLayout  } from '@vkontakte/vkui';
+import { Banner, FormItem, Select, Input, Spacing, FormLayout  } from '@vkontakte/vkui';
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
 
 
@@ -33,17 +33,23 @@ const Register = ({ id, go, fetchedUser }) => {
 				asideMode="dismiss"
 				actions={<Button>Заполнить</Button>}
 				/>
-			<FormItem top="Кто вы?">
-				<Select 
-				placeholder="Выберите профессию"
-				options= {professions}
-				/>
-			</FormItem>
-			
-			<FormItem top="Сколько вы хотите получать?">
-				<Input placeholder="10000$"/>
-			</FormItem>
-			<Button type="submit" mode="commerce">Далее</Button>
+			<FormLayout>
+				<FormItem top="Кто вы?">
+					<Select 
+					placeholder="Выберите профессию"
+					options= {professions}
+					/>
+				</FormItem>
+				
+				<FormItem top="Сколько вы хотите получать?">
+					<Input placeholder="10000$"/>
+				</FormItem>
+				
+				<Spacing size={50} />
+				<Div>
+					<Button stretched type="submit" mode="commerce">Далее</Button>
+				</Div>
+			</FormLayout>
 		</Panel>
 	)
 };
