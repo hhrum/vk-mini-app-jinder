@@ -4,12 +4,15 @@ import { Panel, PanelHeader, Group } from "@vkontakte/vkui";
 // import { Icon } from "@vkontakte/icons";
 
 
-function PanelMenu() {
+function PanelMenu({go}) {
   return <Panel>
     <PanelHeader>Ещё</PanelHeader>
-    {/* <Group style={{ height: '1000px' }}>
-      <Placeholder icon={<icons.Icon56NewsfeedOutline width={56} height={56} />} />
-    </Group> */}
+    <Group>
+        <Cell before={<Icon28UserOutgoingOutline/>} onClick={go} data-to="sentRequests">Мои заявки</Cell>
+        <Cell before={<Icon28UserAddedOutline/>}>Меня готовы принять</Cell>
+        <Cell before={<Icon28ChecksOutline/>}>Взаимный коннект</Cell>
+    </Group>
+
   </Panel>;
 }
 export default PanelMenu;
