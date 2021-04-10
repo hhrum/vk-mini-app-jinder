@@ -16,8 +16,7 @@ const App = () => {
 	const [popout, setPopout] = useState(/*<ScreenSpinner size='large' />*/null);
 
 	useEffect(() => {
-
-		bridge.subscribe(({ detail: { type, data } }) => {
+		bridge.subscribe(({ detail: { type, data }}) => {
 			if (type === 'VKWebAppUpdateConfig') {
 				const schemeAttribute = document.createAttribute('scheme');
 				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
@@ -25,8 +24,21 @@ const App = () => {
 			}
 		});
 		async function fetchData() {
-			// fetch  
-			const user = await bridge.send('VKWebAppGetUserInfo');
+			const res = await axios.get('/auth');
+			const vkuser = await bridge.send('VKWebAppGetUserInfo');
+			const user = {
+				...res.data.user,
+				...vkuser
+			}
+
+			if (!res.data.user.resume) {
+				setActivePanel('register')
+			} else {
+				setActivePanel('home')
+			}
+
+			console.log(user);
+
 			setUser(user);
 			setPopout(null);
 		}
@@ -40,11 +52,13 @@ const App = () => {
 	return (
 		<AdaptivityProvider>
 			<AppRoot>
+				{fetchedUser &&
 				<View activePanel={activePanel} popout={popout}>
 					<Home id='home' go={go} activeTab={activeTab} setActiveTab={setActiveTab} />
 					<Register id='register' fetchedUser={fetchedUser} go={go} />
 					<SentRequests id='sentRequests' go={go} />
 				</View>
+				}
 			</AppRoot>
 		</AdaptivityProvider>
 	);

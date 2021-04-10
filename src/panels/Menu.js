@@ -1,5 +1,6 @@
-import { Icon28UserOutgoingOutline, Icon28UserAddedOutline, Icon28ChecksOutline } from '@vkontakte/icons'
-import { Panel, PanelHeader, Group, Cell } from "@vkontakte/vkui";
+import React from "react";
+import { Icon28SlidersOutline } from "@vkontakte/icons";
+import { Panel, PanelHeader, Group } from "@vkontakte/vkui";
 // import { Icon } from "@vkontakte/icons";
 
 

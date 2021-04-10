@@ -1,6 +1,6 @@
-import { Icon28MoonOutline, Icon28SlidersOutline, Icon56CheckCircleOutline } from "@vkontakte/icons";
-import { Panel, PanelHeader, Group, Card, ContentCard, Spacing, Div, Footer, SplitLayout, SplitCol, Button, Cell, HorizontalCell, Placeholder } from "@vkontakte/vkui";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Icon28SlidersOutline } from "@vkontakte/icons";
+import { Panel, PanelHeader, Group, Card, ContentCard, Spacing, Div, Footer, SplitLayout, SplitCol, Button, Cell, HorizontalCell } from "@vkontakte/vkui";
 // import { Icon } from "@vkontakte/icons";
 
 

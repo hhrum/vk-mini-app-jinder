@@ -1,6 +1,6 @@
-import { Panel, PanelHeader, ChipsInput, FormLayout, Button, Div } from "@vkontakte/vkui";
-import { FormItem, Select, Input, NativeSelect, Textarea, Spacing } from '@vkontakte/vkui';
-import { useState } from "react";
+import React from "react";
+import { Icon28SlidersOutline } from "@vkontakte/icons";
+import { Panel, PanelHeader, Group } from "@vkontakte/vkui";
 // import { Icon } from "@vkontakte/icons";
 
 
