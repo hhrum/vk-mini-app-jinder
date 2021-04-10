@@ -17,15 +17,14 @@ import PanelVacancies from './Vacancies';
 import PanelResume from './Resume';
 import PanelMenu from './Menu';
 
-const Home = ({ id, go, fetchedUser }) => {
-	const [activeStory, setActiveStory] = React.useState('vacancies');
-	const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
+const Home = ({ id, go, fetchedUser, setActiveTab, activeTab }) => {
+	const onStoryChange = (e) => setActiveTab(e.currentTarget.dataset.story);
 
 
-	return <Epic activeStory={activeStory} tabbar={<Tabbar>
+	return <Epic activeStory={activeTab} tabbar={<Tabbar>
 		<TabbarItem
 			onClick={onStoryChange}
-			selected={activeStory === 'vacancies'}
+			selected={activeTab === 'vacancies'}
 			data-story="vacancies"
 			text="Вакансии"
 		>
@@ -35,7 +34,7 @@ const Home = ({ id, go, fetchedUser }) => {
 			true ?
 				<TabbarItem
 					onClick={onStoryChange}
-					selected={activeStory === 'resume'}
+					selected={activeTab === 'resume'}
 					data-story="resume"
 					text="Резюме"
 				>
@@ -44,7 +43,7 @@ const Home = ({ id, go, fetchedUser }) => {
 				:
 				<TabbarItem
 					onClick={onStoryChange}
-					selected={activeStory === 'company'}
+					selected={activeTab === 'company'}
 					data-story="company"
 					text="Компания"
 				>
@@ -53,7 +52,7 @@ const Home = ({ id, go, fetchedUser }) => {
 		}
 		<TabbarItem
 			onClick={onStoryChange}
-			selected={activeStory === 'menu'}
+			selected={activeTab === 'menu'}
 			data-story="menu"
 			text="Ещё"
 		>
@@ -71,7 +70,7 @@ const Home = ({ id, go, fetchedUser }) => {
 			<PanelResume id="company" />
 		</View>
 		<View id="menu" activePanel="menu">
-			<PanelMenu id="menu" />
+			<PanelMenu id="menu" go={go}/>
 		</View>
 	</Epic>
 };
