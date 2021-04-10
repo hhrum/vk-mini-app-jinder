@@ -1,10 +1,12 @@
 import { Icon28MoonOutline, Icon28SlidersOutline, Icon56CheckCircleOutline } from "@vkontakte/icons";
 import { Panel, PanelHeader, Group, Card, ContentCard, Spacing, Div, Footer, SplitLayout, SplitCol, Button, Cell, HorizontalCell, Placeholder } from "@vkontakte/vkui";
 import { useState } from "react";
-// import { Icon } from "@vkontakte/icons";
 
 
-function PanelVacancies() {
+import pagesId from '../utils/pagesId';
+
+
+function PanelVacancies({ data, setData, go }) {
   const [currentCompany, setCurrentCompany] = useState(0);
   const vacancies = [
     {
@@ -53,6 +55,11 @@ function PanelVacancies() {
               text={vacancies[currentCompany].desc}
               caption={vacancies[currentCompany].time + " · " + vacancies[currentCompany].salary + "₽"}
               maxHeight={150}
+              onClick={(e) => {
+                console.log(e.currentTarget.dataset)
+                setData(Object.assign(data, { companyId: "SecondCompany" }));
+                go(pagesId.infoCompany);
+              }}
             />
           </Div>
           <Spacing />

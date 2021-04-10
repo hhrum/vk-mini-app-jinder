@@ -2,7 +2,7 @@ import { Avatar, Banner, Button, Group, List, Panel, PanelHeader, PanelHeaderBac
 
 import pagesId from '../utils/pagesId';
 
-const SentRequests = ({ go, setData, data }) => {
+const ApplyMe = ({ go, setData, data }) => {
   return <Panel>
     <PanelHeader
       left={<PanelHeaderBack onClick={() => go(pagesId.home)} />}
@@ -14,20 +14,19 @@ const SentRequests = ({ go, setData, data }) => {
         subheader="Junior Flutter developer"
         actions={
           <>
+            <Button>Принять</Button>
             <Button
               onClick={(e) => {
+                console.info(pagesId.infoCompany);
                 setData(Object.assign(data, { companyId: "FirstCompany" }));
                 go(pagesId.infoCompany);
               }}
-            >Посмотреть</Button>
-            <Button
-              onClick={() => console.log('s')}
               mode="tertiary"
-            >Отозвать</Button>
+            >Посмотреть</Button>
           </>
         }
       />
     </List>
   </Panel>
 }
-export default SentRequests;
+export default ApplyMe;

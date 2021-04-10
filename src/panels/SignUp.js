@@ -12,7 +12,7 @@ import { Banner, FormItem, Select, Input, Spacing, FormLayout  } from '@vkontakt
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
 
 
-const Register = ({ id, go, fetchedUser }) => {
+const SignUp = ({ id, go, fetchedUser }) => {
 	const [professions, setProfessions] = useState([]);
 
 	return (
@@ -54,7 +54,7 @@ const Register = ({ id, go, fetchedUser }) => {
 	)
 };
 
-Register.propTypes = {
+SignUp.propTypes = {
 	id: PropTypes.string.isRequired,
 	go: PropTypes.func.isRequired,
 	fetchedUser: PropTypes.shape({
@@ -67,4 +67,4 @@ Register.propTypes = {
 	}),
 };
 
-export default Register;
+export default SignUp;
