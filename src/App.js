@@ -5,6 +5,7 @@ import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenS
 import { AdaptivityProvider, AppRoot } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
+import Home from './panels/Home';
 import Register from './panels/Register';
 
 const App = () => {
