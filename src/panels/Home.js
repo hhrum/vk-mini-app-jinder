@@ -6,44 +6,74 @@ import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader
 import Header from '@vkontakte/vkui/dist/components/Header/Header';
 import Button from '@vkontakte/vkui/dist/components/Button/Button';
 import Group from '@vkontakte/vkui/dist/components/Group/Group';
-import Cell from '@vkontakte/vkui/dist/components/Cell/Cell';
+import { Cell } from '@vkontakte/vkui/dist/components/Cell/Cell';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
+import { PanelHeaderBack, Placeholder, SplitCol, SplitLayout, Tabbar, TabbarItem, View } from '@vkontakte/vkui';
+import * as icons from '@vkontakte/icons';
+import { Epic } from '@vkontakte/vkui/dist/components/Epic/Epic';
 
-const Home = ({ id, go, fetchedUser }) => (
-	<Panel id={id}>
-		<PanelHeader>Example</PanelHeader>
-		{fetchedUser &&
-		<Group header={<Header mode="secondary">User Data Fetched with VK Bridge</Header>}>
-			<Cell
-				before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200}/> : null}
-				description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
-			>
-				{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
-			</Cell>
-		</Group>}
+import PanelVacancies from './Vacancies';
+import PanelResume from './Resume';
+import PanelMenu from './Menu';
 
-		<Group header={<Header mode="secondary">Navigation Example</Header>}>
-			<Div>
-				<Button stretched size="l" mode="secondary" onClick={go} data-to="persik">
-					Show me the Persik, please
-				</Button>
-			</Div>
-		</Group>
-	</Panel>
-);
+const Home = ({ id, go, fetchedUser }) => {
+	const [activeStory, setActiveStory] = React.useState('vacancies');
+	const onStoryChange = (e) => setActiveStory(e.currentTarget.dataset.story);
 
-Home.propTypes = {
-	id: PropTypes.string.isRequired,
-	go: PropTypes.func.isRequired,
-	fetchedUser: PropTypes.shape({
-		photo_200: PropTypes.string,
-		first_name: PropTypes.string,
-		last_name: PropTypes.string,
-		city: PropTypes.shape({
-			title: PropTypes.string,
-		}),
-	}),
+
+	return <Epic activeStory={activeStory} tabbar={<Tabbar>
+		<TabbarItem
+			onClick={onStoryChange}
+			selected={activeStory === 'vacancies'}
+			data-story="vacancies"
+			text="Вакансии"
+		>
+			<icons.Icon28SearchOutline />
+		</TabbarItem>
+		{
+			true ?
+				<TabbarItem
+					onClick={onStoryChange}
+					selected={activeStory === 'resume'}
+					data-story="resume"
+					text="Резюме"
+				>
+					<icons.Icon28ListOutline />
+				</TabbarItem>
+				:
+				<TabbarItem
+					onClick={onStoryChange}
+					selected={activeStory === 'company'}
+					data-story="company"
+					text="Компания"
+				>
+					<icons.Icon28ListOutline />
+				</TabbarItem>
+		}
+		<TabbarItem
+			onClick={onStoryChange}
+			selected={activeStory === 'menu'}
+			data-story="menu"
+			text="Ещё"
+		>
+			<icons.Icon28MenuOutline />
+		</TabbarItem>
+	</Tabbar>
+	}>
+		<View id="vacancies" activePanel="vacancies">
+			<PanelVacancies id="vacancies" />
+		</View>
+		<View id="resume" activePanel="resume">
+			<PanelResume id="resume" />
+		</View>
+		<View id="resume" activePanel="resume">
+			<PanelResume id="company" />
+		</View>
+		<View id="menu" activePanel="menu">
+			<PanelMenu id="menu" />
+		</View>
+	</Epic>
 };
 
 export default Home;
