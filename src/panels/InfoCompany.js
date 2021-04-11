@@ -2,10 +2,10 @@ import { Cell, Group, Header, InfoRow, List, MiniInfoCell, Panel, PanelHeader, P
 
 import pagesId from '../utils/pagesId';
 
-const InfoCompany = ({ go, companyId }) => {
+const InfoCompany = ({ companyId, goBack }) => {
   return <Panel>
     <PanelHeader
-      left={<PanelHeaderBack onClick={() => go(pagesId.home)} />}
+      left={<PanelHeaderBack onClick={goBack} />}
     >{companyId}</PanelHeader>
     <img src="https://images.unsplash.com/photo-1603988492906-4fb0fb251cf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80" />
     <Group header={<Header>О компании</Header>}>

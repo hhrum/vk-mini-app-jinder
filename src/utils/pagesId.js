@@ -2,7 +2,7 @@ const pagesId = {
   infoCompany: 'infoCompany',
   home: 'home',
   signUp: 'signUp',
-  sentRequests: 'sentRequests',
+  myRequests: 'myRequests',
   applyMe: 'applyMe',
   connect: 'connect',
 }

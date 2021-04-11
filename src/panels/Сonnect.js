@@ -2,10 +2,10 @@ import { Avatar, Banner, Button, Group, List, Panel, PanelHeader, PanelHeaderBac
 
 import pagesId from '../utils/pagesId';
 
-const Connect = ({ go, setData, data }) => {
+const Connect = ({ go, goBack, setData, data }) => {
   return <Panel>
     <PanelHeader
-      left={<PanelHeaderBack onClick={() => go(pagesId.home)} />}
+      left={<PanelHeaderBack onClick={goBack} />}
     >Коннект</PanelHeader>
     <List>
       <Banner
@@ -17,7 +17,7 @@ const Connect = ({ go, setData, data }) => {
             <Button>Отозваться</Button>
             <Button
               onClick={(e) => {
-                setData(Object.assign(data, { companyId: "FirstCompany" }));
+                // setData(Object.assign(data, { companyId: "FirstCompany" }));
                 go(pagesId.infoCompany);
               }}
               mode="tertiary"
