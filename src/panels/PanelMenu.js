@@ -6,7 +6,7 @@ import bridge from "@vkontakte/vk-bridge";
 
 import pagesId from '../utils/pagesId';
 import ApplyMe from './ApplyMe';
-import InfoCompany from './InfoCompany';
+import InfoCompany from '../Students/InfoCompany';
 import MyRequests from './MyRequests';
 import Connect from './Сonnect';
 
@@ -17,10 +17,8 @@ function PanelMenu({data, setData}) {
     window.history.pushState({ panel: name }, name);
     setActiveView(name);
     history.push(name);
-    console.log(history);
   };
   const goBack = () => {
-    console.log(history);
     if (history.length === 1) {
       bridge.send("VKWebAppClose", { "status": "success" });
     } else if (history.length > 1) {

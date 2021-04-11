@@ -5,23 +5,22 @@ import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenS
 import { AdaptivityProvider, AppRoot, ConfigProvider } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Home from './panels/Home';
-import SignUp from './panels/CreateResume';
-import InfoCompany from './panels/InfoCompany';
+import HomeStudents from './Students/HomeStudents';
+import HomeCompany from './Company/HomeCompany';
+import CreateResume from './Students/CreateResume';
 
 import pagesId from './utils/pagesId';
-import ApplyMe from './panels/ApplyMe';
-import Connect from './panels/Сonnect';
-import CreateResume from './panels/CreateResume';
+
+const UserContext = React.createContext();
 
 const App = () => {
-	const [activePanel, setActivePanel] = useState(pagesId.home);
+	const [activePanel, setActivePanel] = useState();
 	const [data, setData] = useState({ currentCompany: "0" });
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(/*<ScreenSpinner size='large' />*/null);
 
 	useEffect(() => {
-		bridge.subscribe(({ detail: { type, data }}) => {
+		bridge.subscribe(({ detail: { type, data } }) => {
 			if (type === 'VKWebAppUpdateConfig') {
 				const schemeAttribute = document.createAttribute('scheme');
 				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
@@ -36,10 +35,10 @@ const App = () => {
 				...vkuser
 			}
 
-			if (!res.data.user.resume) {
-				setActivePanel(pagesId.createResume)
+			if (res.data.user.resume) {
+				setActivePanel(pagesId.homeStudents);
 			} else {
-				setActivePanel(pagesId.home)
+				setActivePanel(pagesId.homeStudents);
 			}
 
 			console.log(user);
@@ -58,19 +57,27 @@ const App = () => {
 		<AdaptivityProvider>
 			<AppRoot>
 				{fetchedUser &&
-				<View activePanel={activePanel} popout={popout}>
-					<Home
-						id={pagesId.home}
-						go={go}
-						data={data}
-						setData={setData}
-					/>
-					<CreateResume
-						id={pagesId.createResume}
-						fetchedUser={fetchedUser}
-						go={go}
-					/>
-				</View>
+					<UserContext.Provider value={fetchedUser}>
+						<View activePanel={activePanel} popout={popout}>
+							<HomeStudents
+								id={pagesId.homeStudents}
+								go={go}
+								data={data}
+								setData={setData}
+							/>
+							<HomeCompany
+								id={pagesId.homeCompany}
+								go={go}
+								data={data}
+								setData={setData}
+							/>
+							<CreateResume
+								id={pagesId.createResume}
+								fetchedUser={fetchedUser}
+								go={go}
+							/>
+						</View>
+					</UserContext.Provider>
 				}
 			</AppRoot>
 		</AdaptivityProvider>

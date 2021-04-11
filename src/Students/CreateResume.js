@@ -8,7 +8,7 @@ import Button from '@vkontakte/vkui/dist/components/Button/Button';
 import Group from '@vkontakte/vkui/dist/components/Group/Group';
 import SimpleCell from '@vkontakte/vkui/dist/components/SimpleCell/SimpleCell';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
-import { Banner, FormItem, Select, Input, Spacing, FormLayout  } from '@vkontakte/vkui';
+import { FormItem, Select, Input, Spacing, FormLayout  } from '@vkontakte/vkui';
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
 
 
