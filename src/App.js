@@ -6,12 +6,13 @@ import { AdaptivityProvider, AppRoot, ConfigProvider } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
-import SignUp from './panels/SignUp';
+import SignUp from './panels/CreateResume';
 import InfoCompany from './panels/InfoCompany';
 
 import pagesId from './utils/pagesId';
 import ApplyMe from './panels/ApplyMe';
 import Connect from './panels/Сonnect';
+import CreateResume from './panels/CreateResume';
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState(pagesId.home);
@@ -36,9 +37,9 @@ const App = () => {
 			}
 
 			if (!res.data.user.resume) {
-				setActivePanel('register')
+				setActivePanel(pagesId.createResume)
 			} else {
-				setActivePanel('home')
+				setActivePanel(pagesId.home)
 			}
 
 			console.log(user);
@@ -64,8 +65,8 @@ const App = () => {
 						data={data}
 						setData={setData}
 					/>
-					<SignUp
-						id={pagesId.signUp}
+					<CreateResume
+						id={pagesId.createResume}
 						fetchedUser={fetchedUser}
 						go={go}
 					/>

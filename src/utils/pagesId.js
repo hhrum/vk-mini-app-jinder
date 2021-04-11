@@ -1,7 +1,7 @@
 const pagesId = {
   infoCompany: 'infoCompany',
   home: 'home',
-  signUp: 'signUp',
+  createResume: 'createResume',
   myRequests: 'myRequests',
   applyMe: 'applyMe',
   connect: 'connect',
