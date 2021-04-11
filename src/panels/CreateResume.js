@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
@@ -12,11 +12,15 @@ import { Banner, FormItem, Select, Input, Spacing, FormLayout  } from '@vkontakt
 import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
 
 
-const SignUp = ({ id, go, fetchedUser }) => {
+const CreateResume = ({ go, fetchedUser }) => {
 	const [professions, setProfessions] = useState([]);
+	
+	useEffect(()=>{
+
+	}, []);
 
 	return (
-		<Panel id={id}>
+		<Panel>
 			<PanelHeader>Регистрация</PanelHeader>
 			{fetchedUser &&
 			<Group header={<Header mode="secondary">User Data Fetched with VK Bridge</Header>}>
@@ -27,17 +31,12 @@ const SignUp = ({ id, go, fetchedUser }) => {
 					{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
 				</SimpleCell>
 			</Group>}
-			<Banner
-				header="Анкета"
-				subheader="Мы возьмём ваши данные из анкеты Вконтакте. Если ваша анкета заполнена неполностью, то, пожалуйста, заполните её"
-				asideMode="dismiss"
-				actions={<Button>Заполнить</Button>}
-				/>
+			
 			<FormLayout>
 				<FormItem top="Кто вы?">
 					<Select 
-					placeholder="Выберите профессию"
-					options= {professions}
+						placeholder="Выберите профессию"
+						options= {professions}
 					/>
 				</FormItem>
 				
@@ -54,7 +53,7 @@ const SignUp = ({ id, go, fetchedUser }) => {
 	)
 };
 
-SignUp.propTypes = {
+CreateResume.propTypes = {
 	id: PropTypes.string.isRequired,
 	go: PropTypes.func.isRequired,
 	fetchedUser: PropTypes.shape({
@@ -67,4 +66,4 @@ SignUp.propTypes = {
 	}),
 };
 
-export default SignUp;
+export default CreateResume;
