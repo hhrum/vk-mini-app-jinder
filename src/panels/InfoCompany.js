@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import { Cell, Group, Header, InfoRow, List, MiniInfoCell, Panel, PanelHeader, PanelHeaderBack, SimpleCell } from "@vkontakte/vkui"
 
 import pagesId from '../utils/pagesId';

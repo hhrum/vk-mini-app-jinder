@@ -38,9 +38,9 @@ const App = () => {
 			}
 
 			if (!res.data.user.resume) {
-				setActivePanel('register')
+				setActivePanel(pagesId.signUp)
 			} else {
-				setActivePanel('home')
+				setActivePanel(pagesId.home)
 			}
 
 			console.log(user);

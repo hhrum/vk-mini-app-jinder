@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import { Avatar, Banner, Button, Group, List, Panel, PanelHeader, PanelHeaderBack } from "@vkontakte/vkui"
 
 import pagesId from '../utils/pagesId';
