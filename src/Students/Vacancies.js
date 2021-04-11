@@ -1,39 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon28MoonOutline, Icon28SlidersOutline, Icon56CheckCircleOutline } from "@vkontakte/icons";
 import { Panel, PanelHeader, Group, Card, ContentCard, Spacing, Div, Footer, SplitLayout, SplitCol, Button, Cell, HorizontalCell, Placeholder, ConfigProvider, Root, View } from "@vkontakte/vkui";
 
 import pagesId from '../utils/pagesId';
 import InfoCompany from "./InfoCompany";
 import bridge from "@vkontakte/vk-bridge";
+import getVacancies from "../data/getVacancies";
 
 function PanelVacancies({ data, setData, go }) {
   const [activeView, setActiveView] = useState('main');
   const [history, setHistory] = useState(['main']);
-  const [currentCompany, setCurrentCompany] = useState(0);
-  const vacancies = [
-    {
-      name: 'First Company',
-      search: 'Juniort Flutter-dev',
-      desc: 'Description',
-      time: 'Занятость полная',
-      salary: 10000
-    },
-    {
-      name: 'Second Company',
-      search: 'Senior Flutter-dev',
-      desc: 'Description',
-      time: 'Занятость полная',
-      salary: 10000
-    },
-  ];
+  const [vacancies, setVacancies] = useState([]);
 
   const clickButtonYes = (_) => {
     console.log('Yes');
-    setCurrentCompany(currentCompany + 1);
+    setVacancies(vacancies.slice(1));
   }
   const clickButtonNo = (_) => {
     console.log('No');
-    setCurrentCompany(currentCompany + 1);
+    setVacancies(vacancies.slice(1));
   }
 
   function go(name) {
@@ -52,6 +37,13 @@ function PanelVacancies({ data, setData, go }) {
     }
   }
 
+  useEffect(()=>{
+    getVacancies().then((value)=>{
+      console.log(value)
+      setVacancies(value);
+    });
+  }, []);
+
   return <ConfigProvider isWebView={true}>
     <Root activeView={activeView}>
       <View id="main" activePanel="main">
@@ -59,7 +51,7 @@ function PanelVacancies({ data, setData, go }) {
           <PanelHeader>Вакансии</PanelHeader>
           <Spacing size={16} />
           {
-            currentCompany > vacancies.length - 1 ?
+            vacancies.length == 0 ?
               <Placeholder
                 icon={<Icon56CheckCircleOutline />}
               >
@@ -71,13 +63,13 @@ function PanelVacancies({ data, setData, go }) {
                   <ContentCard
                     mode="shadow"
                     image="https://images.unsplash.com/photo-1603988492906-4fb0fb251cf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80"
-                    subtitle={vacancies[currentCompany].search}
-                    header={vacancies[currentCompany].name}
-                    text={vacancies[currentCompany].desc}
-                    caption={vacancies[currentCompany].time + " · " + vacancies[currentCompany].salary + "₽"}
+                    subtitle={vacancies[0].profession.name}
+                    header={vacancies[0].company.name}
+                    text={vacancies[0].description}
+                    caption={vacancies[0].time + " · " + vacancies[0].salary + "₽"}
                     maxHeight={150}
                     onClick={(e) => {
-                      setData(Object.assign(data, { companyId: "SecondCompany" }));
+                      setData(Object.assign(data, { companyId: vacancies[0].company.name }));
                       go(pagesId.infoCompany);
                     }}
                   />
@@ -88,10 +80,10 @@ function PanelVacancies({ data, setData, go }) {
                     style={{ justifyContent: "center" }}
                   >
                     <SplitCol spaced width="100%">
-                      <Button onClick={clickButtonNo} mode="tertiary">Дальше</Button>
+                      <Button size="l" stretched onClick={clickButtonNo} mode="tertiary">Дальше</Button>
                     </SplitCol>
                     <SplitCol spaced width="100%">
-                      <Button onClick={clickButtonYes} mode="commerce">Подходит</Button>
+                      <Button size="l"  stretched onClick={clickButtonYes} mode="commerce">Подходит</Button>
                     </SplitCol>
                   </SplitLayout>
                 </Footer>
