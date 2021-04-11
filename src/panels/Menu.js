@@ -1,6 +1,6 @@
+import React from "react";
 import { Icon28UserOutgoingOutline, Icon28UserAddedOutline, Icon28ChecksOutline } from '@vkontakte/icons'
 import { Panel, PanelHeader, Group, Cell, Div } from "@vkontakte/vkui";
-// import { Icon } from "@vkontakte/icons";
 
 import pagesId from '../utils/pagesId';
 
