@@ -17,7 +17,9 @@ import PanelVacancies from './Vacancies';
 import PanelResume from './Resume';
 import PanelMenu from './Menu';
 
-const Home = ({ id, go, fetchedUser, setActiveTab, activeTab }) => {
+import pagesId from '../utils/pagesId';
+
+const Home = ({ id, go, fetchedUser, setActiveTab, activeTab, data, setData }) => {
 	const onStoryChange = (e) => setActiveTab(e.currentTarget.dataset.story);
 
 
@@ -61,16 +63,21 @@ const Home = ({ id, go, fetchedUser, setActiveTab, activeTab }) => {
 	</Tabbar>
 	}>
 		<View id="vacancies" activePanel="vacancies">
-			<PanelVacancies id="vacancies" />
+			<PanelVacancies 
+				id="vacancies"
+				data={data}
+				setData={setData} 
+				go={go}
+			/>
 		</View>
 		<View id="resume" activePanel="resume">
 			<PanelResume id="resume" />
 		</View>
-		<View id="resume" activePanel="resume">
+		<View id="company" activePanel="company">
 			<PanelResume id="company" />
 		</View>
 		<View id="menu" activePanel="menu">
-			<PanelMenu id="menu" go={go}/>
+			<PanelMenu id="menu" go={go} />
 		</View>
 	</Epic>
 };

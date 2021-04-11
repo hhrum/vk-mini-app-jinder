@@ -6,12 +6,18 @@ import { AdaptivityProvider, AppRoot, ConfigProvider } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
-import Register from './panels/Register';
+import SignUp from './panels/SignUp';
 import SentRequests from './panels/SentRequests';
+import InfoCompany from './panels/InfoCompany';
+
+import pagesId from './utils/pagesId';
+import ApplyMe from './panels/ApplyMe';
+import Connect from './panels/Сonnect';
 
 const App = () => {
-	const [activePanel, setActivePanel] = useState('home');
+	const [activePanel, setActivePanel] = useState(pagesId.home);
 	const [activeTab, setActiveTab] = useState('vacancies');
+	const [data, setData] = useState({ currentCompany: "0" });
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(/*<ScreenSpinner size='large' />*/null);
 
@@ -45,8 +51,8 @@ const App = () => {
 		fetchData();
 	}, []);
 
-	const go = e => {
-		setActivePanel(e.currentTarget.dataset.to);
+	const go = (to) => {
+		setActivePanel(to);
 	};
 
 	return (
@@ -54,9 +60,44 @@ const App = () => {
 			<AppRoot>
 				{fetchedUser &&
 				<View activePanel={activePanel} popout={popout}>
-					<Home id='home' go={go} activeTab={activeTab} setActiveTab={setActiveTab} />
-					<Register id='register' fetchedUser={fetchedUser} go={go} />
-					<SentRequests id='sentRequests' go={go} />
+					<Home
+						id={pagesId.home}
+						go={go}
+						activeTab={activeTab}
+						setActiveTab={setActiveTab}
+						data={data}
+						setData={setData}
+					/>
+					<SignUp
+						id={pagesId.signUp}
+						fetchedUser={fetchedUser}
+						go={go}
+					/>
+					<SentRequests
+						id={pagesId.sentRequests}
+						go={go}
+						data={data}
+						setData={setData}
+					/>
+					<InfoCompany
+						id={pagesId.infoCompany}
+						go={go}
+						companyId={data.companyId}
+					/>
+					<ApplyMe
+						id={pagesId.applyMe}
+						go={go}
+						companyId={data.companyId}
+						data={data}
+						setData={setData}
+					/>
+					<Connect
+						id={pagesId.connect}
+						go={go}
+						companyId={data.companyId}
+						data={data}
+						setData={setData}
+					/>
 				</View>
 				}
 			</AppRoot>
