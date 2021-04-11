@@ -8,7 +8,7 @@ import PanelResume from './Resume';
 import PanelMenu from '../panels/PanelMenu';
 import pagesId from '../utils/pagesId';
 
-const HomeStudents = ({ id, go, fetchedUser, data, setData }) => {
+const HomeStudents = ({ id, go, data, setData }) => {
 	const [activeTab, setActiveTab] = useState(pagesId.vacancies);
 	const onStoryChange = (e) => setActiveTab(e.currentTarget.dataset.story);
 

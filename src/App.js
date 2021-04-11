@@ -11,7 +11,7 @@ import CreateResume from './Students/CreateResume';
 
 import pagesId from './utils/pagesId';
 
-const UserContext = React.createContext();
+import UserContext from "./contexts/UserContext";
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState();
@@ -38,7 +38,7 @@ const App = () => {
 			if (res.data.user.resume) {
 				setActivePanel(pagesId.homeStudents);
 			} else {
-				setActivePanel(pagesId.homeStudents);
+				setActivePanel(pagesId.createResume);
 			}
 
 			console.log(user);
@@ -53,11 +53,27 @@ const App = () => {
 		setActivePanel(to);
 	};
 
+	const createResume = async (profession, salary, faculty) => {
+		setPopout(<ScreenSpinner size="large" />);
+		let res = await axios.post("/resume", {
+			profession,
+			salary,
+			faculty
+		});
+		setUser({
+			...fetchedUser,
+			resume: res.data
+		});
+
+		setActivePanel(pagesId.homeStudents);
+		setPopout(null);
+	}
+
 	return (
 		<AdaptivityProvider>
 			<AppRoot>
 				{fetchedUser &&
-					<UserContext.Provider value={fetchedUser}>
+					<UserContext.Provider value={{user: fetchedUser}}>
 						<View activePanel={activePanel} popout={popout}>
 							<HomeStudents
 								id={pagesId.homeStudents}
@@ -73,8 +89,8 @@ const App = () => {
 							/>
 							<CreateResume
 								id={pagesId.createResume}
-								fetchedUser={fetchedUser}
-								go={go}
+								createResume={createResume}
+								setPopout={setPopout}
 							/>
 						</View>
 					</UserContext.Provider>
