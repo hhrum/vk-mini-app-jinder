@@ -3,11 +3,11 @@ import { Avatar, Banner, Button, Group, List, Panel, PanelHeader, PanelHeaderBac
 
 import pagesId from '../utils/pagesId';
 
-const ApplyMe = ({ go, setData, data }) => {
+const ApplyMe = ({ go, goBack, setData, data }) => {
   return <Panel>
     <PanelHeader
-      left={<PanelHeaderBack onClick={() => go(pagesId.home)} />}
-    >Мои заявки</PanelHeader>
+      left={<PanelHeaderBack onClick={goBack} />}
+    >Предложения</PanelHeader>
     <List>
       <Banner
         before={<Avatar size={56} src="https://sun9-49.userapi.com/c850332/v850332555/115030/JyNJrr4cytY.jpg?ava=1" />}

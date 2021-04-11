@@ -3,10 +3,10 @@ import { Avatar, Banner, Button, Group, List, Panel, PanelHeader, PanelHeaderBac
 
 import pagesId from '../utils/pagesId';
 
-const SentRequests = ({ go, setData, data }) => {
+const MyRequests = ({ go, goBack, setData, data }) => {
   return <Panel>
     <PanelHeader
-      left={<PanelHeaderBack onClick={() => go(pagesId.home)} />}
+      left={<PanelHeaderBack onClick={goBack} />}
     >Мои заявки</PanelHeader>
     <List>
       <Banner
@@ -16,7 +16,7 @@ const SentRequests = ({ go, setData, data }) => {
         actions={
           <>
             <Button
-              onClick={(e) => {
+              onClick={() => {
                 setData(Object.assign(data, { companyId: "FirstCompany" }));
                 go(pagesId.infoCompany);
               }}
@@ -31,4 +31,4 @@ const SentRequests = ({ go, setData, data }) => {
     </List>
   </Panel>
 }
-export default SentRequests;
+export default MyRequests;

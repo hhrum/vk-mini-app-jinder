@@ -6,17 +6,16 @@ import { AdaptivityProvider, AppRoot, ConfigProvider } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Home from './panels/Home';
-import SignUp from './panels/SignUp';
-import SentRequests from './panels/SentRequests';
+import SignUp from './panels/CreateResume';
 import InfoCompany from './panels/InfoCompany';
 
 import pagesId from './utils/pagesId';
 import ApplyMe from './panels/ApplyMe';
 import Connect from './panels/Сonnect';
+import CreateResume from './panels/CreateResume';
 
 const App = () => {
 	const [activePanel, setActivePanel] = useState(pagesId.home);
-	const [activeTab, setActiveTab] = useState('vacancies');
 	const [data, setData] = useState({ currentCompany: "0" });
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(/*<ScreenSpinner size='large' />*/null);
@@ -38,7 +37,7 @@ const App = () => {
 			}
 
 			if (!res.data.user.resume) {
-				setActivePanel(pagesId.signUp)
+				setActivePanel(pagesId.createResume)
 			} else {
 				setActivePanel(pagesId.home)
 			}
@@ -63,40 +62,13 @@ const App = () => {
 					<Home
 						id={pagesId.home}
 						go={go}
-						activeTab={activeTab}
-						setActiveTab={setActiveTab}
 						data={data}
 						setData={setData}
 					/>
-					<SignUp
-						id={pagesId.signUp}
+					<CreateResume
+						id={pagesId.createResume}
 						fetchedUser={fetchedUser}
 						go={go}
-					/>
-					<SentRequests
-						id={pagesId.sentRequests}
-						go={go}
-						data={data}
-						setData={setData}
-					/>
-					<InfoCompany
-						id={pagesId.infoCompany}
-						go={go}
-						companyId={data.companyId}
-					/>
-					<ApplyMe
-						id={pagesId.applyMe}
-						go={go}
-						companyId={data.companyId}
-						data={data}
-						setData={setData}
-					/>
-					<Connect
-						id={pagesId.connect}
-						go={go}
-						companyId={data.companyId}
-						data={data}
-						setData={setData}
 					/>
 				</View>
 				}
