@@ -1,6 +1,10 @@
 const pagesId = {
   infoCompany: 'infoCompany',
-  home: 'home',
+  homeStudents: 'homeStudents',
+  homeCompany: 'homeCompany',
+  vacancies: 'vacancies',
+  resume: 'resume',
+  menu: 'menu',
   createResume: 'createResume',
   myRequests: 'myRequests',
   applyMe: 'applyMe',

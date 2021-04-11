@@ -77,7 +77,6 @@ function PanelVacancies({ data, setData, go }) {
                     caption={vacancies[currentCompany].time + " · " + vacancies[currentCompany].salary + "₽"}
                     maxHeight={150}
                     onClick={(e) => {
-                      console.log(e.currentTarget.dataset)
                       setData(Object.assign(data, { companyId: "SecondCompany" }));
                       go(pagesId.infoCompany);
                     }}
